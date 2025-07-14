@@ -8,7 +8,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import { IoMdRefresh } from "react-icons/io";
 import { Heart, ZoomIn, ArrowUp, ArrowDown } from "lucide-react";
 import { getApiBase } from "../utils/getAPIBase.js";
-
+import AIPrediction from "../components/AIPrediction.jsx";
 const API_BASE = getApiBase();
 
 const StockDetails = () => {
@@ -68,6 +68,7 @@ const StockDetails = () => {
     try {
       const res = await fetch(`${API_BASE}/stock/${id}`);
       const data = await res.json();
+
       if (data?.priceInfo?.lastPrice) {
         setPrice(data.priceInfo.lastPrice);
         setChangeValue(data.priceInfo.change);
@@ -328,6 +329,8 @@ const StockDetails = () => {
           </div>
         </div>
       )}
+
+      {stock && <AIPrediction stock={stock} />}
     </>
   );
 };
